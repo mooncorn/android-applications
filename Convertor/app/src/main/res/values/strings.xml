@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Convertor</string>
+    <string name="name">Name:</string>
+    <string name="temperature">Temperature</string>
+    <string name="metric">Metric</string>
+    <string name="quit">Quit</string>
+    <string name="temperature_metric_conversion">Temperature/Metric conversion</string>
+</resources>
