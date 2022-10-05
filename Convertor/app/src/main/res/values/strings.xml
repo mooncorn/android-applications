@@ -5,4 +5,13 @@
     <string name="metric">Metric</string>
     <string name="quit">Quit</string>
     <string name="temperature_metric_conversion">Temperature/Metric conversion</string>
+    <string name="go_back">Return</string>
+    <string name="convert">Convert</string>
+    <string name="temperature_in_c">Temperature in C:</string>
+    <string name="temperature_in_f">Temperature in F:</string>
+    <string name="temperature_conversion">Temperature conversion</string>
+    <string name="metric_conversion">Metric conversion</string>
+    <string name="kilometers">Kilometers:</string>
+    <string name="centimeters">Centimeters:</string>
+    <string name="meters">Meters:</string>
 </resources>
