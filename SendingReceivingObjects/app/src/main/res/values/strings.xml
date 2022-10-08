@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SendingReceivingObjects</string>
+    <string name="internet_provider">Internet Provider</string>
+    <string name="client_number">Client number:</string>
+    <string name="providers">Provider:</string>
+    <string name="bell">Bell</string>
+    <string name="videotron">Videotron</string>
+    <string name="acanac">Acanac</string>
+    <string name="nb_of_months">Nb of months:</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="tps">TPS:</string>
+    <string name="tvq">TVQ:</string>
+    <string name="total">Total:</string>
+    <string name="save">Save</string>
+    <string name="show_all">Show All</string>
+    <string name="exit">Exit</string>
+</resources>

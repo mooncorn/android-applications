@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/internet_provider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtClientNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/client_number"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextClientNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/rdgProvider"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        />
+
+    <TextView
+        android:id="@+id/txtProvider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/providers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextClientNumber"
+        android:paddingTop="10dp"/>
+
+    <RadioGroup
+        android:id="@+id/rdgProvider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/txtProvider"
+        app:layout_constraintTop_toTopOf="@id/txtProvider"
+        android:layout_marginStart="50dp">
+
+        <RadioButton
+            android:id="@+id/rdbBell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bell" />
+
+        <RadioButton
+            android:id="@+id/rdbVideotron"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/videotron" />
+
+        <RadioButton
+            android:id="@+id/rdbAcanac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/acanac" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtNbOfMonths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nb_of_months"
+        app:layout_constraintTop_toBottomOf="@+id/rdgProvider"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumberOfMonths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/rdgProvider"
+        app:layout_constraintTop_toTopOf="@+id/txtNbOfMonths"
+        />
+
+    <TextView
+        android:id="@+id/txtSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/subtotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberOfMonths"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/editTextSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/rdgProvider"
+        app:layout_constraintTop_toTopOf="@+id/txtSubtotal" />
+
+    <TextView
+        android:id="@+id/txtTPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tps"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSubtotal"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/editTextTPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@+id/rdgProvider"
+        app:layout_constraintTop_toTopOf="@+id/txtTPS" />
+
+    <TextView
+        android:id="@+id/txtTVQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvq"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTPS"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/editTextTVQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@id/rdgProvider"
+        app:layout_constraintTop_toTopOf="@id/txtTVQ" />
+
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTVQ"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/editTextTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@id/rdgProvider"
+        app:layout_constraintTop_toTopOf="@id/txtTotal"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnShowAll"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btnShowAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_all"
+        app:layout_constraintStart_toEndOf="@+id/btnSave"
+        app:layout_constraintEnd_toStartOf="@id/btnExit"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/exit"
+        app:layout_constraintStart_toEndOf="@+id/btnShowAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
