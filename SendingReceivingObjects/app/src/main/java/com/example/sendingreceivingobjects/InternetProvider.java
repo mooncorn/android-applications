@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class InternetProvider implements Serializable {
     private String clientNumber;
-    private ProviderBase provider;
+    private Provider provider;
     private Integer nbOfMonths;
 
-    public InternetProvider(String clientNumber, ProviderBase provider, Integer nbOfMonths) {
+    public InternetProvider(String clientNumber, Provider provider, Integer nbOfMonths) {
         this.clientNumber = clientNumber;
         this.provider = provider;
         this.nbOfMonths = nbOfMonths;
@@ -21,11 +21,11 @@ public class InternetProvider implements Serializable {
         this.clientNumber = clientNumber;
     }
 
-    public ProviderBase getProvider() {
+    public Provider getProvider() {
         return provider;
     }
 
-    public void setProvider(ProviderBase providers) {
+    public void setProvider(Provider providers) {
         this.provider = providers;
     }
 

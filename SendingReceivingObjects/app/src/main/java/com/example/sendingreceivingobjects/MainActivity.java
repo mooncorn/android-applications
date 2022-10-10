@@ -28,7 +28,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initialize();
 
+        edtNbOfMonths.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                int months = Integer.parseInt(edtNbOfMonths.getText().toString());
+                switch (rdgProvider.getCheckedRadioButtonId()) {
+                    case R.id.rdbBell:
+                        edtSubtotal.setText(getSubtotalForBell(months).toString());
+                        break;
+                    case R.id.rdbVideotron:
+                        edtSubtotal.setText(getSubtotalForVideotron(months).toString());
+                        break;
+                    case R.id.rdbAcanac:
+                        edtSubtotal.setText(getSubtotalForAcanac(months).toString());
+                        break;
+                    default:
+                        edtSubtotal.setText("");
+                        break;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void initialize() {
         internetProviderList = new ArrayList<>();
 
         edtClientNumber = findViewById(R.id.editTextClientNumber);
@@ -45,38 +79,13 @@ public class MainActivity extends AppCompatActivity {
         btnSave.setOnClickListener(view -> onClickSave());
         btnShowAll.setOnClickListener(view -> onClickShowAll());
         btnExit.setOnClickListener(view -> onClickExit());
-
-        edtNbOfMonths.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                InternetProvider ip = buildInternetProvider(false);
-
-                if (ip != null) {
-                    try {
-                        edtSubtotal.setText(ip.getProvider().calculateSubtotal(ip.getNbOfMonths()) + "");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void onClickSave() {
-        internetProviderList.add(buildInternetProvider(true));
+        internetProviderList.add(createInternetProvider(true));
     }
 
-    private InternetProvider buildInternetProvider(boolean showToastMessages) {
+    private InternetProvider createInternetProvider(boolean showToastMessages) {
 
         // Validate Client Number
         String clientNumber = edtClientNumber.getText().toString();
@@ -89,17 +98,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Validate Providers
-        ProviderBase provider;
+        Provider provider;
 
         switch (rdgProvider.getCheckedRadioButtonId()) {
             case R.id.rdbBell:
-                provider = new BellProvider();
+                provider = Provider.BELL;
                 break;
             case R.id.rdbVideotron:
-                provider = new VideotronProvider();
+                provider = Provider.VIDEOTRON;
                 break;
             case R.id.rdbAcanac:
-                provider = new AcanacProvider();
+                provider = Provider.ACANAC;
                 break;
             default:
                 provider = null;
@@ -123,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Number of months is required", Toast.LENGTH_SHORT).show();
         }
 
-        if (nbOfMonths == null || !Arrays.asList(provider.getAcceptedMonths()).contains(nbOfMonths)) {
+        if (nbOfMonths == null || nbOfMonths < 1 || nbOfMonths > 12) {
             if (showToastMessages)
-                Toast.makeText(this, "Number of months needs to be " + provider.getAcceptedMonthsString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Number of months needs to be  ", Toast.LENGTH_SHORT).show();
             return null;
         }
 
@@ -136,6 +145,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShowAllActivity.class);
         intent.putExtra(PROVIDER_LIST, internetProviderList);
         startActivity(intent);
+    }
+
+    private Double getSubtotalForBell(int nbOfMonths) {
+        if (nbOfMonths < 1 || nbOfMonths > 12) return null;
+        if (nbOfMonths == 12) return 600d;
+        return 60d * nbOfMonths;
+    }
+
+    private Double getSubtotalForVideotron(int nbOfMonths) {
+        if (nbOfMonths < 1 || nbOfMonths > 12) return null;
+        if (nbOfMonths == 12) return 70d * 12 * 0.7;
+        if (nbOfMonths == 6) return 350d;
+        return 70d * nbOfMonths;
+    }
+
+    private Double getSubtotalForAcanac(int nbOfMonths) {
+        if (nbOfMonths < 1 || nbOfMonths > 12) return null;
+        if (nbOfMonths == 12) return 45d * 11;
+        return 45d * nbOfMonths;
     }
 
     private void onClickExit() {
