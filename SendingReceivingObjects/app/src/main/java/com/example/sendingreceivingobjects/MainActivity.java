@@ -38,26 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                int months = Integer.parseInt(edtNbOfMonths.getText().toString());
-                switch (rdgProvider.getCheckedRadioButtonId()) {
-                    case R.id.rdbBell:
-                        edtSubtotal.setText(getSubtotalForBell(months).toString());
-                        break;
-                    case R.id.rdbVideotron:
-                        edtSubtotal.setText(getSubtotalForVideotron(months).toString());
-                        break;
-                    case R.id.rdbAcanac:
-                        edtSubtotal.setText(getSubtotalForAcanac(months).toString());
-                        break;
-                    default:
-                        edtSubtotal.setText("");
-                        break;
-                }
+                onValueChange();
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+        rdgProvider.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                onValueChange();
             }
         });
     }
@@ -81,8 +73,50 @@ public class MainActivity extends AppCompatActivity {
         btnExit.setOnClickListener(view -> onClickExit());
     }
 
+    private void onValueChange() {
+        int months;
+        Double subtotal = null;
+
+        try {
+            months = Integer.parseInt(edtNbOfMonths.getText().toString());
+        } catch (Exception e) {
+            return;
+        }
+
+        if (months < 1 || months > 12) return;
+
+        switch (rdgProvider.getCheckedRadioButtonId()) {
+            case R.id.rdbBell:
+                subtotal = getSubtotalForBell(months);
+                break;
+
+            case R.id.rdbVideotron:
+                subtotal = getSubtotalForVideotron(months);
+                break;
+
+            case R.id.rdbAcanac:
+                subtotal = getSubtotalForAcanac(months);
+                break;
+
+            default:
+                break;
+        }
+
+        if (subtotal == null) return;
+
+        double tps = calculateTPS(subtotal);
+        double tvq = calculateTVQ(subtotal);
+        double total = subtotal + tps + tvq;
+
+        edtSubtotal.setText(subtotal + "");
+        edtTPS.setText(tps + "");
+        edtTVQ.setText(tvq + "");
+        edtTotal.setText(total + "");
+    }
+
     private void onClickSave() {
         internetProviderList.add(createInternetProvider(true));
+        Toast.makeText(this, "Provider saved", Toast.LENGTH_SHORT).show();
     }
 
     private InternetProvider createInternetProvider(boolean showToastMessages) {
@@ -164,6 +198,14 @@ public class MainActivity extends AppCompatActivity {
         if (nbOfMonths < 1 || nbOfMonths > 12) return null;
         if (nbOfMonths == 12) return 45d * 11;
         return 45d * nbOfMonths;
+    }
+
+    private double calculateTPS(double amount) {
+        return 0.06 * amount;
+    }
+
+    private double calculateTVQ(double amount) {
+        return (amount * 3.6) * 0.095;
     }
 
     private void onClickExit() {

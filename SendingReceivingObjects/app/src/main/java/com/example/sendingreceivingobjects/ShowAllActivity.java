@@ -26,7 +26,7 @@ public class ShowAllActivity extends AppCompatActivity {
         StringBuilder sb = new StringBuilder("");
         for (InternetProvider internetProvider : internetProviderList) {
             sb.append(internetProvider.toString());
-            sb.append("\n======================");
+            sb.append("======================\n");
         }
         txtContent.setText(sb.toString());
     }

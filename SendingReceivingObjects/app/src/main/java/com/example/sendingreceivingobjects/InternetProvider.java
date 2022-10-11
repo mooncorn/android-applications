@@ -41,6 +41,6 @@ public class InternetProvider implements Serializable {
     public String toString() {
         return "Client Number: " + clientNumber +
                 "\nProvider: " + provider +
-                "\nNb Of Months: " + nbOfMonths;
+                "\nNb Of Months: " + nbOfMonths + "\n";
     }
 }
