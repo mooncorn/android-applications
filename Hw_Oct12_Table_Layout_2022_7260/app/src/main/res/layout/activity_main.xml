@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:id="@+id/tbMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:stretchColumns="*"
+        android:shrinkColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:background="#1A276B"
+                android:paddingTop="16dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_span="5"
+                android:text="MENU"
+                style="@style/title_style"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:background="#1A276B"
+                android:paddingTop="13dp"
+                android:paddingBottom="5dp"/>
+
+                <TextView
+                android:id="@+id/textView19"
+                style="@style/heading_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="MONDAY" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="TUESDAY"
+                style="@style/heading_style"/>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="WEDNESDAY"
+                style="@style/heading_style"/>
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="THURSDAY"
+                style="@style/heading_style"/>
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="FRIDAY"
+                style="@style/heading_style"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView30"
+                style="@style/heading_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="BREAKFAST" />
+
+            <TextView
+                android:id="@+id/tvBMT"
+                style="@style/data_default_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:text="....." />
+
+            <TextView
+                android:id="@+id/tvBW"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style"/>
+
+            <TextView
+                android:id="@+id/tvBThF"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:text="....."
+                style="@style/data_default_style_2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView34"
+                style="@style/heading_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="LUNCH" />
+
+            <TextView
+                android:id="@+id/tvLM"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style"/>
+
+            <TextView
+                android:id="@+id/tvLT"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style_2"/>
+
+            <TextView
+                android:id="@+id/tvLW"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style"/>
+
+            <TextView
+                android:id="@+id/tvLTh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style_2"/>
+
+            <TextView
+                android:id="@+id/tvLF"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView40"
+                style="@style/heading_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="SNACK" />
+
+            <TextView
+                android:id="@+id/tvSM"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                style="@style/data_default_style"/>
+
+            <TextView
+                android:id="@+id/tvSTW"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                android:layout_span="2"
+                style="@style/data_default_style_2"/>
+
+            <TextView
+                android:id="@+id/tvSThF"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="....."
+                android:layout_span="2"
+                style="@style/data_default_style"/>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
