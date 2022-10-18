@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -25,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             R.id.tvLF, R.id.tvSM, R.id.tvSTW, R.id.tvSThF };
 
 
-    TextView clickedTv;
+    TextView clickedTextView;
+    int currentIndex;
 
     ActivityResultLauncher<Intent> activityResLauncher;
 
@@ -67,12 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onActivityResult(ActivityResult result) {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    listOfMenus = (MyMenu[]) result.getData().getExtras().getSerializable("ListOfMenus");
-                    for (MyMenu oneMenu:listOfMenus) {
-                        clickedTv.setText(oneMenu.getDescription());
-                        clickedTv.setTextColor(oneMenu.getTextColor());
-                        clickedTv.setBackgroundColor(oneMenu.getBackgroundColor());
-                    }
+                    MyMenu menu = (MyMenu) result.getData().getSerializableExtra("Menu");
+
+                    listOfMenus[currentIndex] = menu;
+
+                    clickedTextView.setText(menu.getDescription());
+                    clickedTextView.setTextColor(menu.getTextColor());
+                    clickedTextView.setBackgroundColor(menu.getBackgroundColor());
                 }
             }
         });
@@ -80,26 +81,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        clickedTv = (TextView) view;
+        clickedTextView = (TextView) view;
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 
-        // find index of text view
+        // find corresponding menu by looking at what text view was clicked
         for (int i = 0; i < listOfTextViews.length; i++) {
-            if (clickedTv.getId() == listOfTextViews[i].getId()) {
-                intent.putExtra("MenuIndex", i);
+            if (clickedTextView.getId() == listOfTextViews[i].getId()) {
+                currentIndex = i;
                 break;
             }
         }
 
-        intent.putExtra("Description", clickedTv.getText().toString());
-        intent.putExtra("TextColor", clickedTv.getCurrentTextColor());
-
-        // https://stackoverflow.com/questions/17224152/how-do-i-get-the-background-color-of-a-textview
-        if (clickedTv.getBackground() instanceof ColorDrawable) {
-            ColorDrawable cd = (ColorDrawable) clickedTv.getBackground();
-            intent.putExtra("BackgroundColor", cd.getColor());
-        }
-        intent.putExtra("ListOfMenus", listOfMenus);
+        intent.putExtra("Menu", listOfMenus[currentIndex]);
         activityResLauncher.launch(intent);
     }
 }

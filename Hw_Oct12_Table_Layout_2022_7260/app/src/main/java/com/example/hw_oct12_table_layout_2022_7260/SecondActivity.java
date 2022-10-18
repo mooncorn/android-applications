@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +13,6 @@ import android.widget.RadioGroup;
 
 import com.example.hw_oct12_table_layout_2022_7260.Model.MyMenu;
 
-import java.util.ArrayList;
-
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText edDescription;
@@ -25,12 +20,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     RadioButton rbRed, rbGreen, rbMagenta, rbYellow, rbWhite;
     Button btnReturn;
 
-    String description;
-    int textColor;
-    int backgroundColor;
-
-    MyMenu[] listOfMenus;
-    int menuIndex;
+    MyMenu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +39,19 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         rbYellow = findViewById(R.id.rbYellow);
         rbWhite = findViewById(R.id.rbWhite);
         btnReturn = findViewById(R.id.btnReturn);
-        // Add click event to btnReturn
+
         btnReturn.setOnClickListener(view -> save());
-        // Add click event to rButtons
         rbRed.setOnClickListener(this);
         rbGreen.setOnClickListener(this);
         rbMagenta.setOnClickListener(this);
         rbYellow.setOnClickListener(this);
         rbWhite.setOnClickListener(this);
 
-        // Initialize listOfMenus
-        listOfMenus = (MyMenu[]) getIntent().getSerializableExtra("ListOfMenus");
-        menuIndex = getIntent().getIntExtra("MenuIndex", -1);
-        description = getIntent().getStringExtra("Description");
-        textColor = getIntent().getIntExtra("TextColor", 0);
-        backgroundColor = getIntent().getIntExtra("BackgroundColor", 0);
+        menu = (MyMenu) getIntent().getSerializableExtra("Menu");
 
-        edDescription.setText(description);
+        edDescription.setText(menu.getDescription());
 
-        switch (textColor) {
+        switch (menu.getTextColor()) {
             case Color.RED:
                 rbRed.setChecked(true);
                 break;
@@ -78,7 +62,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 rbMagenta.setChecked(true);
         }
 
-        switch (backgroundColor) {
+        switch (menu.getBackgroundColor()) {
             case Color.YELLOW:
                 rbYellow.setChecked(true);
                 break;
@@ -91,57 +75,32 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         int id = view.getId();
+
         switch (id) {
             case R.id.rbRed:
-                textColor = Color.RED;
+                menu.setTextColor(Color.RED);
                 break;
             case R.id.rbGreen:
-                textColor = Color.GREEN;
+                menu.setTextColor(Color.GREEN);
                 break;
             case R.id.rbMagenta:
-                textColor = Color.MAGENTA;
+                menu.setTextColor(Color.MAGENTA);
                 break;
             case R.id.rbWhite:
-                backgroundColor = Color.WHITE;
+                menu.setBackgroundColor(Color.WHITE);
                 break;
             case R.id.rbYellow:
-                backgroundColor = Color.YELLOW;
+                menu.setBackgroundColor(Color.YELLOW);
                 break;
         }
     }
 
     public void save() {
+        menu.setDescription(edDescription.getText().toString());
+
         Intent i = new Intent();
-        String newDescription = edDescription.getText().toString();
-        int newTextColor = 0;
-        int newBackgroundColor = 0;
 
-        switch (rgTextColor.getCheckedRadioButtonId()) {
-            case R.id.rbRed:
-                newTextColor = Color.RED;
-                break;
-            case R.id.rbGreen:
-                newTextColor = Color.GREEN;
-                break;
-            case R.id.rbMagenta:
-                newTextColor = Color.MAGENTA;
-        }
-
-        switch (rgBackgroundColor.getCheckedRadioButtonId()) {
-            case R.id.rbYellow:
-                newBackgroundColor = Color.YELLOW;
-                break;
-            case R.id.rbWhite:
-                newBackgroundColor = Color.WHITE;
-                break;
-        }
-
-        MyMenu menu = listOfMenus[menuIndex];
-        menu.setDescription(newDescription);
-        menu.setBackgroundColor(newBackgroundColor);
-        menu.setTextColor(newTextColor);
-
-        i.putExtra("ListOfMenus", listOfMenus);
+        i.putExtra("Menu", menu);
         setResult(RESULT_OK, i);
         finish();
     }
