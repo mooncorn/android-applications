@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">TeamManagement</string>
+    <string name="teams_management">Teams Management</string>
+    <string name="team_id">Team ID:</string>
+    <string name="team_name">Team name:</string>
+    <string name="photo">Photo:</string>
+    <string name="project_title">Project title:</string>
+    <string name="description">Description:</string>
+    <string name="members">Members:</string>
+    <string name="team_image">Team Image</string>
+    <string name="add">Add</string>
+    <string name="find">Find</string>
+    <string name="list">List</string>
+    <string name="quit">Quit</string>
 </resources>
